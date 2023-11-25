@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './App.css';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -20,7 +21,7 @@ function App() {
         setTodos([...todos, res.data]);
         setNewTodo({ title: '', description: '', time: '' });
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error('Error adding todo:', err));
   };
 
   const updateTodo = (id) => {
@@ -38,8 +39,12 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Todo App</h1>
+   
+    <div className="todo-container">
+   
+   <div>
+    
+    <h1>Todo App</h1>
       <table>
         <thead>
           <tr>
@@ -50,7 +55,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {todos.map(todo => (
+          {todos.map((todo ,index) => (
             <tr key={todo._id}>
               <td>{todo.title}</td>
               <td>{todo.description}</td>
@@ -70,6 +75,7 @@ function App() {
         <label>Time: <input type="text" value={newTodo.time} onChange={(e) => setNewTodo({ ...newTodo, time: e.target.value })} /></label>
         <button onClick={addTodo}>Add</button>
       </div>
+    </div>
     </div>
   );
 }
