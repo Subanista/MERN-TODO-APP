@@ -15,7 +15,7 @@ function App() {
 
   const addTodo = () => {
     // Send a POST request to add a new todo
-    axios.post('/api/todos', newTodo)
+    axios.post('http://localhost:5000/api/todos', newTodo)
       .then(res => {
         console.log('New Todo:', res.data);
         setTodos([...todos, res.data]);
@@ -26,14 +26,14 @@ function App() {
 
   const updateTodo = (id) => {
     // Send a PUT request to update a todo
-    axios.put(`/api/todos/${id}`, newTodo)
+    axios.put(`http://localhost:5000/api/todos/${id}`, newTodo)
       .then(res => console.log(res.data))
       .catch(err => console.error(err));
   };
 
   const deleteTodo = (id) => {
     // Send a DELETE request to delete a todo
-    axios.delete(`/api/todos/${id}`)
+    axios.delete(`http://localhost:5000/api/todos/${id}`)
       .then(res => setTodos(todos.filter(todo => todo._id !== id)))
       .catch(err => console.error(err));
   };
